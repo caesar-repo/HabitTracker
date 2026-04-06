@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="HabitTracker.MainPage"
+             xmlns:viewmodel ="clr-namespace:HabitTracker.ViewModels"
+             xmlns:models="clr-namespace:HabitTracker.Models"
+             x:DataType="viewmodel:MainViewModel">
+
+
+
+    <Grid RowDefinitions="100,Auto,50,50" ColumnDefinitions=".75*,.25*,.25*,.25*" Padding="10" RowSpacing="10"
+      ColumnSpacing="10">
+        <Image Grid.ColumnSpan="4"  Source="dotnet_bot.png" BackgroundColor="White"/>
+        <Entry Placeholder="Enter Habit" PlaceholderColor="ForestGreen" Grid.Row="1" Grid.ColumnSpan="0"
+           Text="{Binding Text}"/>
+
+        <Button Text="Add" Grid.Row="1" Grid.Column="1" Command="{Binding AddHabitCommand}"/>
+        <Button Text="Delete" Grid.Row="1" Grid.Column="2" Command="{Binding DeleteHabitCommand}"/>
+        <Button Text="Update" Grid.Row="1" Grid.Column="3" Command="{Binding UpdateHabitCommand}"/>
+        <CollectionView Grid.Row="2" Grid.RowSpan="4" Grid.ColumnSpan="2" SelectionMode="None"
+                    ItemsSource="{Binding Items}">
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="models:Habit">
+                    <SwipeView>
+                        <SwipeView.RightItems>
+                            <SwipeItems>
+                                <SwipeItem Text="Delete" BackgroundColor="Red" 
+                                       Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainViewModel}},Path=DeleteHabitCommand}"
+                                       CommandParameter="{Binding .}"/>
+                            </SwipeItems>
+                        </SwipeView.RightItems>
+
+                        <Grid Padding="0,5">
+                            <Border>
+                                <Border.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainViewModel}}, Path=TapCommand}"
+                                                      CommandParameter="{Binding .}"/>
+                                </Border.GestureRecognizers>
+
+                                <Label Text="{Binding Name}" FontSize="Medium"/>
+                            </Border>
+
+                        </Grid>
+
+                    </SwipeView>
+
+                </DataTemplate>
+
+            </CollectionView.ItemTemplate>
+
+
+        </CollectionView>
+
+       
+
+
+
+    </Grid>
+
+
+</ContentPage>
