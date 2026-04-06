@@ -17,7 +17,7 @@
         <Button Text="Add" Grid.Row="1" Grid.Column="1" Command="{Binding AddHabitCommand}"/>
         <Button Text="Delete" Grid.Row="1" Grid.Column="2" Command="{Binding DeleteHabitCommand}"/>
         <Button Text="Update" Grid.Row="1" Grid.Column="3" Command="{Binding UpdateHabitCommand}"/>
-        <CollectionView Grid.Row="2" Grid.RowSpan="4" Grid.ColumnSpan="2" SelectionMode="None"
+        <CollectionView Grid.Row="2" Grid.RowSpan="4" Grid.ColumnSpan="4" SelectionMode="None"
                     ItemsSource="{Binding Items}">
 
             <CollectionView.ItemTemplate>
